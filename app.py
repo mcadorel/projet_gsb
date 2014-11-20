@@ -19,8 +19,8 @@ class Application(Tk):
 
         # MENU
         self.menu_options = OrderedDict([
-            ('Login'  , self.login),
-            ('Quit'         , self.close)
+            ('Login'    , 'Pas encore implémenté'),
+            ('Quit'     , self.close)
             ])
 
         self.menuStrip = Menu(self)
@@ -61,36 +61,9 @@ class Application(Tk):
 
     def close(self):
         """ Close application (not just root window.) """
-        self.destroy()
         print('Quitting...')
+        self.destroy()
         exit(0)
-
-    def login(self):
-        """ Login popup """
-
-        # Pop login window :
-        loginScreen = Tk()
-        
-        # Textboxes
-        lblHost = Label(loginScreen, text='Host : ')
-        lblHost.grid(row=0, column=0, sticky=NW)
-        tbHost = Entry(loginScreen)
-        tbHost.grid(row=0, column=1, sticky=NW)
-
-        lblDB = Label(loginScreen, text='Database : ')
-        lblDB.grid(row=1, column=0, sticky=NW)
-        tbDB = Entry(loginScreen)
-        tbDB.grid(row=1, column=1, sticky=NW)
-
-        # Login button
-        bnLogin = Button(loginScreen,
-                         text='Login',
-                         command=lambda:print(tbHost.get()))
-        bnLogin.grid(row=4, column=1, sticky=SE)
-            
-        self.loginInfo = {
-            'host':tbHost.get()
-            }
 
 # Test:
 if __name__ == '__main__':
