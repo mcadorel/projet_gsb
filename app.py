@@ -5,16 +5,16 @@
 
 from collections import OrderedDict
 from tkinter import *
-from tkinter.ttk import Combobox
+from model import Model
 
 class Application(Tk):
     """ Application et GUI. """
     def __init__(self):
         Tk.__init__(self)
-        self.title('Gestion des rapports de Visite')
         self.fullscreen = False
 
         # CONFIG
+        self.title('Gestion des rapports de Visite')
         self.configure(width=600, height=400)
 
         # MENU
@@ -36,8 +36,11 @@ class Application(Tk):
         for (key, action) in self.bindings.items():
             self.bind(key, action)
 
+        # MODELE
+        self.model = Model()
+
     def toggle_fullscreen(self, event):
-        """ Same func for turning it on and off. """
+        """ Active ou désactive le mode plein écran. """
         if not self.fullscreen:
             self.sizeBuffer = (self.winfo_height(), self.winfo_width())
             self.geometry(
@@ -60,7 +63,7 @@ class Application(Tk):
             self.fullscreen = False
 
     def close(self):
-        """ Close application (not just root window.) """
+        """ Ferme l'application. """
         print('Quitting...')
         self.destroy()
         exit(0)
