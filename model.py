@@ -15,11 +15,10 @@ class Model(object):
                     user=_user,
                     password=_password
                     )
+            self.cursor = self.connectGsb.cursor()
         except pymssql.OperationalError:
             print('Echec de la connexion à la base de données.')
             exit(0)
-
-        self.cursor = self.connectGsb.cursor()
 
     def query(self, query:'SQL string'):
         """ Renvoie une liste de tuples. """
@@ -28,7 +27,10 @@ class Model(object):
 
 # test
 if __name__ == '__main__':
-    m = Model('172.16.0.50', 'gsb_RV_eq2', 'affane', 'affane')
+    m = Model(input('Host ?'),
+              input('Database'),
+              input('User ?'),
+              input('Password ?'))
     clefs   = m.query('SELECT idFamille FROM FAMILLE')
     valeurs = m.query('SELECT libFamille FROM FAMILLE')
 
