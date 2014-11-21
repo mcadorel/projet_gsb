@@ -36,8 +36,10 @@ class Application(Tk):
         for (key, action) in self.bindings.items():
             self.bind(key, action)
 
-        # MODELE
+        # MODEL
         self.model = Model()
+
+        
 
     def toggle_fullscreen(self, event):
         """ Active ou désactive le mode plein écran. """
