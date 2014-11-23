@@ -1,0 +1,4 @@
+HOST:172.16.0.50
+DATABASE	:gsb_RV_eq3
+USER:cadorel
+PASSWORD:cadorel
