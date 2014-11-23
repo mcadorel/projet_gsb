@@ -36,8 +36,14 @@ class Application(Tk):
         for (key, action) in self.bindings.items():
             self.bind(key, action)
 
-        # MODEL
-        self.model = Model()
+    def connect_to_database(self):
+        """ Création d'une connexion durable grâce à un objet Model. """
+        with open('connexion_info.txt') as loginInfo:
+            host=loginInfo.readline().split(':')[1].strip()
+            database=loginInfo.readline().split(':')[1].strip()
+            user=loginInfo.readline().split(':')[1].strip()
+            password=loginInfo.readline().split(':')[1].strip()
+            self.model = Model(host, database, user, password)
 
         
 
