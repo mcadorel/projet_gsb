@@ -6,12 +6,14 @@
 from collections import OrderedDict
 from tkinter import *
 from model import Model
+from loginBox import LoginBox
 
 class Application(Tk):
     """ Application et GUI. """
     def __init__(self):
         Tk.__init__(self)
         self.fullscreen = False
+        self.loginAs = False    # False if not logged in, username otherwise
 
         # CONFIG
         self.title('Gestion des rapports de Visite')
@@ -19,7 +21,7 @@ class Application(Tk):
 
         # MENU
         self.menu_options = OrderedDict([
-            ('Login'    , 'Pas encore implémenté'),
+            ('Login'    , self.login),
             ('Quit'     , self.close)
             ])
 
@@ -45,6 +47,8 @@ class Application(Tk):
             password=loginInfo.readline().split(':')[1].strip()
             self.model = Model(host, database, user, password)
 
+    def login(self):
+        self.loginAs = LoginBox().login()
         
 
     def toggle_fullscreen(self, event):
