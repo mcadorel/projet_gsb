@@ -7,12 +7,13 @@ from tkinter import *
 from tkinter.ttk import Combobox
 from model import Model
 
+
 class LoginBox(Tk):
     """ Formulaire d'authentification. """
     def __init__(self):
         Tk.__init__(self)
         self.title('Authentification')
-        
+
         # Textboxes
         lblUser = Label(self, text='Utilisateur : ')
         lblUser.grid(row=0, column=0, sticky=NW)
@@ -34,28 +35,29 @@ class LoginBox(Tk):
         bnLogin = Button(self,
                          text='Annuler',
                          command=self.cancel)
-        bnLogin.grid(row=4, column=1, sticky=SE) # TODO : better snap to grid
+        bnLogin.grid(row=4, column=1, sticky=SE)  # TODO : better snap to grid
 
     def login(self):
         """ Renvoie False en cas d'échec, ou le nom d'utilisateur sinon. """
         loginInfo = {
-            'user'      : self.tbUser.get().strip(),
-            'password'  : self.tbPW.get().strip()
+            'user':     self.tbUser.get().strip(),
+            'password': self.tbPW.get().strip()
             }
         print('DEBUG :\n' + str(loginInfo))
-        
+
         with open('connexion_info.txt') as loginInfo:
-            host=loginInfo.readline().split(':')[1].strip()
-            database=loginInfo.readline().split(':')[1].strip()
-            user=loginInfo.readline().split(':')[1].strip()
-            password=loginInfo.readline().split(':')[1].strip()
+            host = loginInfo.readline().split(':')[1].strip()
+            database = loginInfo.readline().split(':')[1].strip()
+            user = loginInfo.readline().split(':')[1].strip()
+            password = loginInfo.readline().split(':')[1].strip()
             self.model = Model(host, database, user, password)
 
         if loginInfo['password'] == self.model.query("""
             SELECT password
             FROM VISITEUR
             WHERE login = {}
-            """.format(loginInfo['user'])) :
+            """.format(loginInfo['user']
+                       )):
             res = loginInfo['user']
         else:
             res = False

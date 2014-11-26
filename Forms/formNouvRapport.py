@@ -1,9 +1,11 @@
 from tkinter import *
 from tkinter.ttk import Combobox
 
+
 class FormNouvRapport(Frame):
     """ Frame contenant le formulaire d'ajout d'un nouveau rapport.
-    C'est un widget destiné à être empaqueté dans une fenêtre ou un autrre formulaire.
+    C'est un widget destiné à être empaqueté dans une fenêtre ou un
+    autre formulaire.
     Structure :
     <Frame>
       <PanedWindow>
@@ -25,11 +27,14 @@ class FormNouvRapport(Frame):
 
         # NUMERO
         tbNum = Entry(leftFrame, width=24)
-        Label(leftFrame, text='Numéro de rapport : ').grid(row=0, column=0, sticky=SE)
+        Label(leftFrame,
+              text='Numéro de rapport : ').grid(row=0, column=0, sticky=SE)
         tbNum.grid(row=0, column=1, sticky=SE, pady=5)
 
         # PRATICIEN
-        cbbPraticien = Combobox(leftFrame, width=22,values=['Alice', 'Bob', 'Charlie', 'Donald'])
+        cbbPraticien = Combobox(leftFrame,
+                                width=22,
+                                values=['Alice', 'Bob', 'Charlie', 'Donald'])
         Label(leftFrame, text='Praticien : ').grid(row=1, column=0, sticky=SE)
         cbbPraticien.grid(row=1, column=1, sticky=SE, pady=5)
 
@@ -39,7 +44,10 @@ class FormNouvRapport(Frame):
         tbDate.grid(row=2, column=1, sticky=SE, pady=5)
 
         # MOTIF
-        cbbMotif = Combobox(leftFrame, width=22, values=['Visite régulière', 'Demande', 'Nouveau produit'])
+        cbbMotif = Combobox(leftFrame, width=22, values=[
+            'Visite régulière',
+            'Demande',
+            'Nouveau produit'])
         Label(leftFrame, text='Combo : ').grid(row=3, column=0, sticky=SE)
         cbbMotif.grid(row=3, column=1, sticky=SE, pady=5)
 
@@ -52,11 +60,11 @@ class FormNouvRapport(Frame):
 
         # ECHANTILLONS
         # TODO
-        
+
         pane.add(rightFrame)
 
         pane.grid(row=0, column=0)
-        
+
 
 s = FormNouvRapport(Tk())
 s.grid(row=0, column=0)

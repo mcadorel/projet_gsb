@@ -8,6 +8,7 @@ from tkinter import *
 from model import Model
 from loginBox import LoginBox
 
+
 class Application(Tk):
     """ Application et GUI. """
     def __init__(self):
@@ -21,8 +22,8 @@ class Application(Tk):
 
         # MENU
         self.menu_options = OrderedDict([
-            ('Login'    , self.login),
-            ('Quit'     , self.close)
+            ('Login', self.login),
+            ('Quit', self.close)
             ])
 
         self.menuStrip = Menu(self)
@@ -32,24 +33,23 @@ class Application(Tk):
 
         # BINDINGS
         self.bindings = OrderedDict([
-            ('<F11>'     , self.toggle_fullscreen)
+            ('<F11>', self.toggle_fullscreen)
             ])
-        
+
         for (key, action) in self.bindings.items():
             self.bind(key, action)
 
     def connect_to_database(self):
         """ Création d'une connexion durable grâce à un objet Model. """
         with open('connexion_info.txt') as loginInfo:
-            host=loginInfo.readline().split(':')[1].strip()
-            database=loginInfo.readline().split(':')[1].strip()
-            user=loginInfo.readline().split(':')[1].strip()
-            password=loginInfo.readline().split(':')[1].strip()
+            host = loginInfo.readline().split(':')[1].strip()
+            database = loginInfo.readline().split(':')[1].strip()
+            user = loginInfo.readline().split(':')[1].strip()
+            password = loginInfo.readline().split(':')[1].strip()
             self.model = Model(host, database, user, password)
 
     def login(self):
         self.loginAs = LoginBox().login()
-        
 
     def toggle_fullscreen(self, event):
         """ Active ou désactive le mode plein écran. """
@@ -83,5 +83,3 @@ class Application(Tk):
 # Test:
 if __name__ == '__main__':
     lApplication = Application()
-    
-

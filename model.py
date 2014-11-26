@@ -5,6 +5,7 @@
 
 import pymssql
 
+
 class Model(object):
     """ Connexion à la base de données de GSB_RV sur SQL Server. """
     def __init__(self, _host, _database, _user, _password):
