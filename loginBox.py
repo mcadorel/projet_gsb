@@ -13,6 +13,7 @@ class LoginBox(Tk):
     def __init__(self):
         Tk.__init__(self)
         self.title('Authentification')
+        self.userName = ''
 
         # Textboxes
         lblUser = Label(self, text='Utilisateur : ')
@@ -39,11 +40,10 @@ class LoginBox(Tk):
 
     def login(self):
         """ Renvoie False en cas d'échec, ou le nom d'utilisateur sinon. """
-        loginInfo = {
+        inputLoginInfo = {
             'user':     self.tbUser.get().strip(),
             'password': self.tbPW.get().strip()
             }
-        print('DEBUG :\n' + str(loginInfo))
 
         with open('connexion_info.txt') as loginInfo:
             host = loginInfo.readline().split(':')[1].strip()
@@ -52,17 +52,17 @@ class LoginBox(Tk):
             password = loginInfo.readline().split(':')[1].strip()
             self.model = Model(host, database, user, password)
 
-        if loginInfo['password'] == self.model.query("""
-            SELECT password
+        if inputLoginInfo['password'] == self.model.query("""
+            SELECT mdp
             FROM VISITEUR
-            WHERE login = {}
-            """.format(loginInfo['user']
-                       )):
-            res = loginInfo['user']
+            WHERE identifiant = '{}';
+            """.format(inputLoginInfo['user']
+                       ))[0][0].strip():  # TODO : Ewww, rewrite ASAP
+            res = inputLoginInfo['user']
         else:
             res = False
 
-        return res
+        self.userName = res
 
     def cancel(self):
         exit(0)

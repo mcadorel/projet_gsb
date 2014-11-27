@@ -49,7 +49,7 @@ class Application(Tk):
             self.model = Model(host, database, user, password)
 
     def login(self):
-        self.loginAs = LoginBox().login()
+        self.loginAs = LoginBox().userName
 
     def toggle_fullscreen(self, event):
         """ Active ou désactive le mode plein écran. """
