@@ -23,6 +23,7 @@ class Application(Tk):
         # MENU
         self.menu_options = OrderedDict([
             ('Login', self.login),
+            ('Nouveau rapport', ),
             ('Quit', self.close)
             ])
 

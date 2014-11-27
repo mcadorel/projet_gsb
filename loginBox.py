@@ -13,7 +13,7 @@ class LoginBox(Tk):
     def __init__(self):
         Tk.__init__(self)
         self.title('Authentification')
-        self.userName = ''
+        self.userName = False
 
         # Textboxes
         lblUser = Label(self, text='Utilisateur : ')
@@ -58,11 +58,11 @@ class LoginBox(Tk):
             WHERE identifiant = '{}';
             """.format(inputLoginInfo['user']
                        ))[0][0].strip():  # TODO : Ewww, rewrite ASAP
-            res = inputLoginInfo['user']
+            self.userName = inputLoginInfo['user']
+            self.destroy()
         else:
-            res = False
-
-        self.userName = res
+            Label(text='Login ou mot de passe invalide.').grid(
+                row=5, column=1)
 
     def cancel(self):
         exit(0)
