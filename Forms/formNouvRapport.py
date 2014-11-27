@@ -65,6 +65,7 @@ class FormNouvRapport(Frame):
 
         pane.grid(row=0, column=0)
 
-
-s = FormNouvRapport(Tk())
-s.grid(row=0, column=0)
+# Test
+if __name__ == '__main__':
+    s = FormNouvRapport(Tk())
+    s.grid(row=0, column=0)

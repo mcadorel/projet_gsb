@@ -7,6 +7,7 @@ from collections import OrderedDict
 from tkinter import *
 from model import Model
 from loginBox import LoginBox
+from Forms import formNouvRapport
 
 
 class Application(Tk):
@@ -23,7 +24,7 @@ class Application(Tk):
         # MENU
         self.menu_options = OrderedDict([
             ('Login', self.login),
-            ('Nouveau rapport', ),
+            ('Nouveau rapport', lambda:formNouvRapport.FormNouvRapport(self).grid(row=1, column=1)),
             ('Quit', self.close)
             ])
 
